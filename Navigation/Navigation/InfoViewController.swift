@@ -30,7 +30,6 @@ class InfoViewController: UIViewController {
     }
     
     @objc func showAlert() {
-        // Create Alert
         let alertMessage = UIAlertController(title: "Удаление", message: "Вы точно хотите удалить пост?", preferredStyle: .alert)
         
         let ok = UIAlertAction(title: "Да", style: UIAlertAction.Style.default) { (action) -> Void in
