@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Navigation
-//
-//  Created by cresh on 18.05.2022.
-//
-
 import UIKit
 
 @main
@@ -39,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
        // window?.backgroundColor = .orange
-        window?.rootViewController = createTabBarController() //Set navigation controller as window's root view
+        window?.rootViewController = createTabBarController()
         window?.makeKeyAndVisible()
 
         return true

@@ -1,10 +1,3 @@
-//
-//  PostViewController.swift
-//  Navigation
-//
-//  Created by cresh on 18.05.2022.
-//
-
 import UIKit
 
 struct Post {
