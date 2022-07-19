@@ -1,14 +1,6 @@
-//
-//  ProfileViewController.swift
-//  Navigation
-//
-//  Created by cresh on 18.05.2022.
-//
-
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
     
     private lazy var profileCard: ProfileHeaderView = {
         let profileCard = ProfileHeaderView()
@@ -18,19 +10,35 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
-
-        self.view.addSubview(self.profileCard);
-        
-        profileCard.translatesAutoresizingMaskIntoConstraints = false
-        profileCard.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
-        profileCard.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-        profileCard.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        profileCard.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        profileCard.frame = CGRect(x: 0,
-                                   y: 0,
-                                   width: self.view.bounds.width,
-                                   height: self.view.bounds.height);
-        
-        
+        view.addSubview(profileCard);
+        profileCard.cardLayout()
+        view.addSubview(buttonChangeTitle);
+        setupConstraintsForButton()
     }
+    
+    private lazy var buttonChangeTitle: UIButton = {
+        let buttonChangeTitle = UIButton()
+        buttonChangeTitle.backgroundColor = UIColor(red: 238.0/255, green: 108.0/255, blue: 77.0/255, alpha: 1.0)
+        buttonChangeTitle.center = self.view.center
+        buttonChangeTitle.setTitle("Change title", for: .normal)
+        buttonChangeTitle.setTitleColor(.white, for: .normal)
+        buttonChangeTitle.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        buttonChangeTitle.addTarget(self, action: #selector(changeTitle), for: .touchUpInside)
+        buttonChangeTitle.translatesAutoresizingMaskIntoConstraints = false
+        return buttonChangeTitle
+    }()
+    
+    @objc func changeTitle(){
+        self.title = "Title is changed"
+    }
+    
+    
+    private func setupConstraintsForButton() {
+            NSLayoutConstraint.activate([
+                buttonChangeTitle.leftAnchor.constraint(equalTo: view.leftAnchor),
+                buttonChangeTitle.rightAnchor.constraint(equalTo: view.rightAnchor),
+                buttonChangeTitle.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                buttonChangeTitle.heightAnchor.constraint(equalToConstant: 50)
+            ])
+        }
 }

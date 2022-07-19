@@ -1,10 +1,3 @@
-//
-//  InfoViewController.swift
-//  Navigation
-//
-//  Created by cresh on 20.05.2022.
-//
-
 import UIKit
 
 class InfoViewController: UIViewController {
