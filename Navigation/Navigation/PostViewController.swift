@@ -10,12 +10,13 @@ class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(red: 224.0/255, green: 251.0/255, blue: 252.0/255, alpha: 1.0)
+        view.backgroundColor = UIColor(rgb: 0xE0FBFB)
         self.navigationItem.title = titlePost
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .plain, target: self, action: #selector(logoutUser))
         
     }
     
+    // MARK: - Methods
     @objc func logoutUser(){
         let infoViewController = InfoViewController()
         present(infoViewController, animated: true, completion: nil)

@@ -55,7 +55,7 @@ class FeedViewController: UIViewController {
     //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 152.0/255, green: 193.0/255, blue: 217.0/255, alpha: 1.0)
+        view.backgroundColor = UIColor.init(rgb: 0x96C1D8)
         self.title = "Feed"
         
         view.addSubview(stackView)
@@ -75,21 +75,13 @@ class FeedViewController: UIViewController {
             firstButton.heightAnchor.constraint(equalToConstant: 50),
             secondButton.widthAnchor.constraint(equalToConstant: 150),
             secondButton.heightAnchor.constraint(equalToConstant: 50)
-            
-            //При попытке выставить constraint для стека:
-            
-            //stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            //stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-            
-            //
-            //Thread 1: EXC_BREAKPOINT (code=1, subcode=0x10698acdc)
-            //и в консоле
-            // Navigation[44058:1576430] *** -[UIStackView nsli_layoutEngine]: message sent to deallocated instance 0x14aa24580
-            //обясните, из-за чего происходит эта ошибка?
-            
         ])
-        
-        
     }
 }
 
+// MARK: - Public extensions
+extension UIColor {
+    convenience init(rgb: UInt) {
+        self.init(red: CGFloat((rgb & 0xFF0000) >> 16) / 255.0, green: CGFloat((rgb & 0x00FF00) >> 8) / 255.0, blue: CGFloat(rgb & 0x0000FF) / 255.0, alpha: CGFloat(1.0))
+    }
+}

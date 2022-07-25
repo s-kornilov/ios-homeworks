@@ -17,9 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         }
         func createProfileViewController() -> UINavigationController {
-            let profileViewController = ProfileViewController()
+            let profileViewController = LogInViewController()
             profileViewController.title = "Профиль"
             profileViewController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.crop.square"), tag: 1)
+            //profileViewController.navigationBar.isHidden = true
             return UINavigationController(rootViewController: profileViewController)
 
         }
@@ -38,8 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    
 }
+
    
 
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4901E80C288EAAC0005539E9 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901E80B288EAAC0005539E9 /* LogInViewController.swift */; };
 		493D306128378C6100E701C5 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D306028378C6100E701C5 /* InfoViewController.swift */; };
 		49D0AEBC2834D73400DDF450 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D0AEBB2834D73400DDF450 /* AppDelegate.swift */; };
 		49D0AEC52834D73700DDF450 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49D0AEC42834D73700DDF450 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4901E80B288EAAC0005539E9 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		493D306028378C6100E701C5 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		49D0AEB82834D73400DDF450 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49D0AEBB2834D73400DDF450 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 		49FC9D42287C5B5F00A4FCEB /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				4901E80B288EAAC0005539E9 /* LogInViewController.swift */,
 				49D0AEDB2834F15F00DDF450 /* ProfileViewController.swift */,
 				49FC9D45287C629800A4FCEB /* ProfileHeaderView.swift */,
 			);
@@ -154,6 +157,7 @@
 				49D0AEDE2834FDE900DDF450 /* PostViewController.swift in Sources */,
 				49FC9D46287C629800A4FCEB /* ProfileHeaderView.swift in Sources */,
 				49D0AEDC2834F15F00DDF450 /* ProfileViewController.swift in Sources */,
+				4901E80C288EAAC0005539E9 /* LogInViewController.swift in Sources */,
 				49D0AEDA2834F15100DDF450 /* FeedViewController.swift in Sources */,
 				49D0AEBC2834D73400DDF450 /* AppDelegate.swift in Sources */,
 				493D306128378C6100E701C5 /* InfoViewController.swift in Sources */,

@@ -2,11 +2,25 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    // MARK: - Private Properties
+    private lazy var buttonChangeTitle: UIButton = {
+        let buttonChangeTitle = UIButton()
+        buttonChangeTitle.backgroundColor = UIColor(rgb: 0xEE6C4D)
+        buttonChangeTitle.center = self.view.center
+        buttonChangeTitle.setTitle("Change title", for: .normal)
+        buttonChangeTitle.setTitleColor(.white, for: .normal)
+        buttonChangeTitle.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        buttonChangeTitle.addTarget(self, action: #selector(changeTitle), for: .touchUpInside)
+        buttonChangeTitle.translatesAutoresizingMaskIntoConstraints = false
+        return buttonChangeTitle
+    }()
+
     private lazy var profileCard: ProfileHeaderView = {
         let profileCard = ProfileHeaderView()
         return profileCard
     }()
     
+    // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
@@ -16,22 +30,10 @@ class ProfileViewController: UIViewController {
         setupConstraintsForButton()
     }
     
-    private lazy var buttonChangeTitle: UIButton = {
-        let buttonChangeTitle = UIButton()
-        buttonChangeTitle.backgroundColor = UIColor(red: 238.0/255, green: 108.0/255, blue: 77.0/255, alpha: 1.0)
-        buttonChangeTitle.center = self.view.center
-        buttonChangeTitle.setTitle("Change title", for: .normal)
-        buttonChangeTitle.setTitleColor(.white, for: .normal)
-        buttonChangeTitle.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        buttonChangeTitle.addTarget(self, action: #selector(changeTitle), for: .touchUpInside)
-        buttonChangeTitle.translatesAutoresizingMaskIntoConstraints = false
-        return buttonChangeTitle
-    }()
-    
+    // MARK: - Methods
     @objc func changeTitle(){
         self.title = "Title is changed"
     }
-    
     
     private func setupConstraintsForButton() {
             NSLayoutConstraint.activate([
@@ -41,4 +43,5 @@ class ProfileViewController: UIViewController {
                 buttonChangeTitle.heightAnchor.constraint(equalToConstant: 50)
             ])
         }
+    
 }

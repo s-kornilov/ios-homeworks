@@ -2,18 +2,7 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        //self.backgroundColor = .orange
-        self.cardLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - UI fields
-    
+    // MARK: - Private Properties
     private lazy var profilePhoto: UIImageView = {
         let profilePhoto = UIImageView(image: UIImage(named: "profilePhoto"))
         profilePhoto.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +33,6 @@ class ProfileHeaderView: UIView {
         profileStatus.textColor = .gray
         profileStatus.text = "waiting for something..."
         return profileStatus
-        
     }()
     
     private lazy var profileStatusButton: UIButton = {
@@ -75,6 +63,17 @@ class ProfileHeaderView: UIView {
         return statusChangeField
     }()
     
+    // MARK: - Init
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        //self.backgroundColor = .orange
+        self.cardLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Button actions
     @objc func buttonPressed() {
         print("Устовлен новый статус: \(statusText)")
@@ -95,7 +94,6 @@ class ProfileHeaderView: UIView {
         self.addSubview(statusChangeField)
         self.addSubview(profileStatus)
         self.addSubview(profileStatusButton)
-        
         setupConstraints()
     }
     
@@ -109,7 +107,7 @@ class ProfileHeaderView: UIView {
             self.leftAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.leftAnchor),
             self.rightAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.rightAnchor),
             self.topAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.topAnchor),
-            self.heightAnchor.constraint(equalToConstant: 220),
+            //self.heightAnchor.constraint(equalToConstant: 220),
             
             profilePhoto.widthAnchor.constraint(equalToConstant: 100),
             profilePhoto.heightAnchor.constraint(equalTo: profilePhoto.widthAnchor),
@@ -123,6 +121,7 @@ class ProfileHeaderView: UIView {
             profileStatusButton.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
             profileStatusButton.topAnchor.constraint(equalTo: profilePhoto.bottomAnchor, constant: 42),
             profileStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            profileStatusButton.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
             profileStatus.leftAnchor.constraint(equalTo: profilePhoto.rightAnchor, constant: 20),
             profileStatus.bottomAnchor.constraint(equalTo: statusChangeField.topAnchor, constant: -6),
@@ -132,9 +131,7 @@ class ProfileHeaderView: UIView {
             statusChangeField.bottomAnchor.constraint(equalTo: profileStatusButton.topAnchor, constant: -10),
             statusChangeField.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
             statusChangeField.heightAnchor.constraint(equalToConstant: 40),
-            
         ])
-        
         self.setNeedsLayout()
     }
     
