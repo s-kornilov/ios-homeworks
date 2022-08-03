@@ -1,12 +1,11 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    var post = Post(title: "Новый пост")
     
     //MARK: Make buttons
     private lazy var firstButton: UIButton = {
         let firstButton = UIButton()
-        firstButton.translatesAutoresizingMaskIntoConstraints = false
+        firstButton.toAutoLayout()
         firstButton.backgroundColor = UIColor(red: 238.0/255, green: 108.0/255, blue: 77.0/255, alpha: 1.0)
         firstButton.layer.cornerRadius = 15
         firstButton.setTitle("Go to post 1", for: .normal)
@@ -18,7 +17,7 @@ class FeedViewController: UIViewController {
     
     private lazy var secondButton: UIButton = {
         let secondButton = UIButton()
-        secondButton.translatesAutoresizingMaskIntoConstraints = false
+        secondButton.toAutoLayout()
         secondButton.backgroundColor = UIColor(red: 238.0/255, green: 108.0/255, blue: 77.0/255, alpha: 1.0)
         secondButton.layer.cornerRadius = 15
         secondButton.setTitle("Go to post 2", for: .normal)
@@ -31,7 +30,7 @@ class FeedViewController: UIViewController {
     //MARK: Make group of buttons
     private var stackView: UIStackView {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.toAutoLayout()
         stackView.clipsToBounds = true
         
         stackView.axis = .vertical
@@ -49,7 +48,7 @@ class FeedViewController: UIViewController {
     @objc private func buttonAction() {
         let postViewController = PostViewController()
         self.navigationController?.pushViewController(postViewController, animated: true)
-        postViewController.titlePost = post.title
+        //postViewController.titlePost = post.title
     }
     
     //MARK: viewDidLoad
@@ -79,9 +78,4 @@ class FeedViewController: UIViewController {
     }
 }
 
-// MARK: - Public extensions
-extension UIColor {
-    convenience init(rgb: UInt) {
-        self.init(red: CGFloat((rgb & 0xFF0000) >> 16) / 255.0, green: CGFloat((rgb & 0x00FF00) >> 8) / 255.0, blue: CGFloat(rgb & 0x0000FF) / 255.0, alpha: CGFloat(1.0))
-    }
-}
+

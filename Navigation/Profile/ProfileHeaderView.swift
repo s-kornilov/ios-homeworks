@@ -1,12 +1,11 @@
 import UIKit
 
-class ProfileHeaderView: UIView {
+class ProfileHeaderView: UITableViewHeaderFooterView {
     
     // MARK: - Private Properties
     private lazy var profilePhoto: UIImageView = {
         let profilePhoto = UIImageView(image: UIImage(named: "profilePhoto"))
-        profilePhoto.translatesAutoresizingMaskIntoConstraints = false
-        //profilePhoto.backgroundColor = .red
+        profilePhoto.toAutoLayout()
         profilePhoto.layer.cornerRadius = profilePhoto.frame.size.width / 3
         profilePhoto.clipsToBounds = true
         profilePhoto.layer.borderWidth = 3
@@ -16,7 +15,7 @@ class ProfileHeaderView: UIView {
     
     private lazy var profileName: UILabel = {
         let profileName = UILabel()
-        profileName.translatesAutoresizingMaskIntoConstraints = false
+        profileName.toAutoLayout()
         //profileName.backgroundColor = .yellow
         profileName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         profileName.textColor = .black
@@ -28,7 +27,7 @@ class ProfileHeaderView: UIView {
     
     private lazy var profileStatus: UILabel = {
         let profileStatus = UILabel()
-        profileStatus.translatesAutoresizingMaskIntoConstraints = false
+        profileStatus.toAutoLayout()
         //profileStatus.backgroundColor = .yellow
         profileStatus.textColor = .gray
         profileStatus.text = "waiting for something..."
@@ -37,8 +36,8 @@ class ProfileHeaderView: UIView {
     
     private lazy var profileStatusButton: UIButton = {
         let profileStatusButton = UIButton()
-        profileStatusButton.translatesAutoresizingMaskIntoConstraints = false
-        profileStatusButton.backgroundColor = .blue
+        profileStatusButton.toAutoLayout()
+        profileStatusButton.backgroundColor = UIColor(rgb: 0x0279FF)
         profileStatusButton.layer.cornerRadius = 4
         profileStatusButton.setTitle("Setup status", for: .normal)
         profileStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
@@ -52,7 +51,7 @@ class ProfileHeaderView: UIView {
     
     private lazy var statusChangeField: UITextField = {
         let statusChangeField = UITextField()
-        statusChangeField.translatesAutoresizingMaskIntoConstraints = false
+        statusChangeField.toAutoLayout()
         statusChangeField.backgroundColor = .white
         statusChangeField.layer.cornerRadius = 12
         statusChangeField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -60,19 +59,21 @@ class ProfileHeaderView: UIView {
         statusChangeField.layer.borderWidth = 1
         statusChangeField.layer.borderColor = UIColor.black.cgColor
         statusChangeField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
+        statusChangeField.makeSpace(inField: statusChangeField)
         return statusChangeField
     }()
     
     // MARK: - Init
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        //self.backgroundColor = .orange
-        self.cardLayout()
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        self.addSubviews(profilePhoto, profileName, statusChangeField, profileStatus,profileStatusButton)
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     // MARK: - Button actions
     @objc func buttonPressed() {
@@ -87,30 +88,11 @@ class ProfileHeaderView: UIView {
         print(statusText)
     }
     
-    // MARK: - Setup position and subviews
-    func cardLayout() {
-        self.addSubview(profilePhoto)
-        self.addSubview(profileName)
-        self.addSubview(statusChangeField)
-        self.addSubview(profileStatus)
-        self.addSubview(profileStatusButton)
-        setupConstraints()
-    }
-    
     // MARK: Setup constraints
     private func setupConstraints() {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        guard let superView = superview else { return }
-        
-        NSLayoutConstraint.activate([
-            
-            self.leftAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.leftAnchor),
-            self.rightAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.rightAnchor),
-            self.topAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.topAnchor),
-            //self.heightAnchor.constraint(equalToConstant: 220),
-            
+        [
             profilePhoto.widthAnchor.constraint(equalToConstant: 100),
-            profilePhoto.heightAnchor.constraint(equalTo: profilePhoto.widthAnchor),
+            profilePhoto.heightAnchor.constraint(equalToConstant: 100),
             profilePhoto.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
             profilePhoto.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             
@@ -121,7 +103,7 @@ class ProfileHeaderView: UIView {
             profileStatusButton.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
             profileStatusButton.topAnchor.constraint(equalTo: profilePhoto.bottomAnchor, constant: 42),
             profileStatusButton.heightAnchor.constraint(equalToConstant: 50),
-            profileStatusButton.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            profileStatusButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
             
             profileStatus.leftAnchor.constraint(equalTo: profilePhoto.rightAnchor, constant: 20),
             profileStatus.bottomAnchor.constraint(equalTo: statusChangeField.topAnchor, constant: -6),
@@ -131,8 +113,7 @@ class ProfileHeaderView: UIView {
             statusChangeField.bottomAnchor.constraint(equalTo: profileStatusButton.topAnchor, constant: -10),
             statusChangeField.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
             statusChangeField.heightAnchor.constraint(equalToConstant: 40),
-        ])
-        self.setNeedsLayout()
+        ].forEach({$0.isActive = true})
     }
     
 }

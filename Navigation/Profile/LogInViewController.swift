@@ -6,26 +6,26 @@ class LogInViewController: UIViewController {
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isScrollEnabled = true
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.toAutoLayout()
         return scrollView
     }()
     
     let contentView: UIView = {
         let contentView = UIView()
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.toAutoLayout()
         return contentView
     }()
     
     //MARK: - Private Properties
     private lazy var logoVK: UIImageView = {
         let logoVK = UIImageView(image: UIImage(named: "logo"))
-        logoVK.translatesAutoresizingMaskIntoConstraints = false
+        logoVK.toAutoLayout()
         return logoVK
     }()
     
     private lazy var logInField: UITextField = {
         let logInField = UITextField()
-        logInField.translatesAutoresizingMaskIntoConstraints = false
+        logInField.toAutoLayout()
         
         logInField.backgroundColor = .systemGray6
         logInField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -38,12 +38,13 @@ class LogInViewController: UIViewController {
         logInField.placeholder = "Email or phone"
         logInField.keyboardType = .default
         
+        logInField.makeSpace(inField: logInField)
         return logInField
     }()
     
     private lazy var passwordField: UITextField = {
         let passwordField = UITextField()
-        passwordField.translatesAutoresizingMaskIntoConstraints = false
+        passwordField.toAutoLayout()
         
         passwordField.backgroundColor = .systemGray6
         passwordField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -53,16 +54,16 @@ class LogInViewController: UIViewController {
         passwordField.textColor = .black
         passwordField.placeholder = "password"
         passwordField.isSecureTextEntry = true
-
+        
         passwordField.keyboardType = .default
         passwordField.autocapitalizationType = .none
-        
+        passwordField.makeSpace(inField: passwordField)
         return passwordField
     }()
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.toAutoLayout()
         stackView.layer.borderColor = UIColor.lightGray.cgColor
         stackView.layer.borderWidth = 0.5
         stackView.layer.cornerRadius = 10
@@ -76,7 +77,7 @@ class LogInViewController: UIViewController {
     
     private lazy var logInButton: UIButton = {
         let logInButton = UIButton()
-        logInButton.translatesAutoresizingMaskIntoConstraints = false
+        logInButton.toAutoLayout()
         
         if let pixelImage = UIImage(named: "blue_pixel") {
             logInButton.setBackgroundImage(pixelImage.imageWithAlpha(alpha: 1), for: .normal)
@@ -109,11 +110,11 @@ class LogInViewController: UIViewController {
         stackView.addArrangedSubview(logInField)
         stackView.addArrangedSubview(passwordField)
         
+        setupConstrainsts()
+        
         //Keyboard close in tap view
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tapGesture)
-        
-        setupConstrainsts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -149,12 +150,12 @@ class LogInViewController: UIViewController {
     
     //MARK: Methods
     private func setupConstrainsts() {
-        let safeAreaguide = view.safeAreaLayoutGuide
+        let safeAreaGuide = view.safeAreaLayoutGuide
         
-        NSLayoutConstraint.activate([scrollView.topAnchor.constraint(equalTo: safeAreaguide.topAnchor),
-                                     scrollView.leadingAnchor.constraint(equalTo: safeAreaguide.leadingAnchor),
-                                     scrollView.trailingAnchor.constraint(equalTo: safeAreaguide.trailingAnchor),
-                                     scrollView.bottomAnchor.constraint(equalTo: safeAreaguide.bottomAnchor),
+        NSLayoutConstraint.activate([scrollView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
+                                     scrollView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor),
+                                     scrollView.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor),
+                                     scrollView.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor),
                                      
                                      contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
                                      contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -186,21 +187,7 @@ class LogInViewController: UIViewController {
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
     
-    @objc func tap() {
-        logInField.becomeFirstResponder()
-        passwordField.resignFirstResponder()
-        
-    }
 }
 
-//MARK: Extensions
-extension UIImage {
-    func imageWithAlpha(alpha: CGFloat) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, scale)
-        draw(at: .zero, blendMode: .normal, alpha: alpha)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage
-    }
-}
+
 

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4901E80C288EAAC0005539E9 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901E80B288EAAC0005539E9 /* LogInViewController.swift */; };
 		493D306128378C6100E701C5 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D306028378C6100E701C5 /* InfoViewController.swift */; };
+		497CAB8828903C0A0097CB29 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CAB8728903C0A0097CB29 /* PostTableViewCell.swift */; };
+		49C02E5B288F211900059530 /* Hooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C02E5A288F211900059530 /* Hooks.swift */; };
 		49D0AEBC2834D73400DDF450 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D0AEBB2834D73400DDF450 /* AppDelegate.swift */; };
 		49D0AEC52834D73700DDF450 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49D0AEC42834D73700DDF450 /* Assets.xcassets */; };
 		49D0AEC82834D73700DDF450 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49D0AEC62834D73700DDF450 /* LaunchScreen.storyboard */; };
@@ -21,6 +23,8 @@
 /* Begin PBXFileReference section */
 		4901E80B288EAAC0005539E9 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		493D306028378C6100E701C5 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		497CAB8728903C0A0097CB29 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		49C02E5A288F211900059530 /* Hooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hooks.swift; sourceTree = "<group>"; };
 		49D0AEB82834D73400DDF450 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49D0AEBB2834D73400DDF450 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49D0AEC42834D73700DDF450 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -43,10 +47,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		49D0AEAF2834D73400DDF450 = {
+		49C02E5C288FDC0200059530 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
 				49FC9D42287C5B5F00A4FCEB /* Profile */,
+				49C02E5A288F211900059530 /* Hooks.swift */,
 				49D0AEBB2834D73400DDF450 /* AppDelegate.swift */,
 				49D0AED92834F15100DDF450 /* FeedViewController.swift */,
 				49D0AEDD2834FDE900DDF450 /* PostViewController.swift */,
@@ -54,6 +59,14 @@
 				49D0AEC42834D73700DDF450 /* Assets.xcassets */,
 				49D0AEC62834D73700DDF450 /* LaunchScreen.storyboard */,
 				49D0AEC92834D73700DDF450 /* Info.plist */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		49D0AEAF2834D73400DDF450 = {
+			isa = PBXGroup;
+			children = (
+				49C02E5C288FDC0200059530 /* Navigation */,
 				49D0AEB92834D73400DDF450 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,6 +82,7 @@
 		49FC9D42287C5B5F00A4FCEB /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				497CAB8728903C0A0097CB29 /* PostTableViewCell.swift */,
 				4901E80B288EAAC0005539E9 /* LogInViewController.swift */,
 				49D0AEDB2834F15F00DDF450 /* ProfileViewController.swift */,
 				49FC9D45287C629800A4FCEB /* ProfileHeaderView.swift */,
@@ -151,8 +165,10 @@
 				49D0AEDC2834F15F00DDF450 /* ProfileViewController.swift in Sources */,
 				4901E80C288EAAC0005539E9 /* LogInViewController.swift in Sources */,
 				49D0AEDA2834F15100DDF450 /* FeedViewController.swift in Sources */,
+				49C02E5B288F211900059530 /* Hooks.swift in Sources */,
 				49D0AEBC2834D73400DDF450 /* AppDelegate.swift in Sources */,
 				493D306128378C6100E701C5 /* InfoViewController.swift in Sources */,
+				497CAB8828903C0A0097CB29 /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +310,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -320,7 +336,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
