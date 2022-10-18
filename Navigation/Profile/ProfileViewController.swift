@@ -1,6 +1,7 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
     //MARK: - Data
     
     fileprivate var posts = postFeed

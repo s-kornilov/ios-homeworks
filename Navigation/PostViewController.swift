@@ -30,7 +30,11 @@ class PostViewController: UIViewController {
         
         view.backgroundColor = UIColor(rgb: 0xE0FBFB)
         self.navigationItem.title = titlePost
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .plain, target: self, action: #selector(logoutUser))
+        if #available(iOS 13.0, *) {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .plain, target: self, action: #selector(logoutUser))
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "trash.fill"), style: .plain, target: self, action: #selector(logoutUser))
+        }
         
     }
     

@@ -26,11 +26,8 @@ class LogInViewController: UIViewController {
     private lazy var logInField: UITextField = {
         let logInField = UITextField()
         logInField.toAutoLayout()
-        
-        logInField.backgroundColor = .systemGray6
         logInField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         logInField.tintColor = UIColor(named: "AccentColor")
-        
         logInField.layer.borderColor = UIColor.lightGray.cgColor
         logInField.layer.borderWidth = 0.25
         logInField.textColor = .black
@@ -45,8 +42,7 @@ class LogInViewController: UIViewController {
     private lazy var passwordField: UITextField = {
         let passwordField = UITextField()
         passwordField.toAutoLayout()
-        
-        passwordField.backgroundColor = .systemGray6
+        passwordField.backgroundColor = UIColor(named: "AccentColor")
         passwordField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         passwordField.tintColor = UIColor(named: "AccentColor")
         passwordField.layer.borderColor = UIColor.lightGray.cgColor

@@ -51,15 +51,18 @@ class FeedViewController: UIViewController {
         //postViewController.titlePost = post.title
     }
     
+
+    
     //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        #if DEBUG
         view.backgroundColor = UIColor.init(rgb: 0x96C1D8)
+        #else
+        view.backgroundColor = UIColor.init(rgb: 0xf9e1cb)
+        #endif
         self.title = "Feed"
-        
         view.addSubview(stackView)
-        
-        
         setupConstraints()
     }
     

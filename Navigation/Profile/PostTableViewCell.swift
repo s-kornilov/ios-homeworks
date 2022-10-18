@@ -1,6 +1,5 @@
 import UIKit
 
-
 class PostTableViewCell: UITableViewCell {
     
     //MARK: - Private Properties

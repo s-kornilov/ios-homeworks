@@ -10,6 +10,17 @@
 		4901E80C288EAAC0005539E9 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901E80B288EAAC0005539E9 /* LogInViewController.swift */; };
 		493D306128378C6100E701C5 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D306028378C6100E701C5 /* InfoViewController.swift */; };
 		497CAB8828903C0A0097CB29 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CAB8728903C0A0097CB29 /* PostTableViewCell.swift */; };
+		497FED5228FC591500AA0FE9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D0AEDD2834FDE900DDF450 /* PostViewController.swift */; };
+		497FED5328FC591500AA0FE9 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FC9D45287C629800A4FCEB /* ProfileHeaderView.swift */; };
+		497FED5428FC591500AA0FE9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D0AEDB2834F15F00DDF450 /* ProfileViewController.swift */; };
+		497FED5528FC591500AA0FE9 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901E80B288EAAC0005539E9 /* LogInViewController.swift */; };
+		497FED5628FC591500AA0FE9 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D0AED92834F15100DDF450 /* FeedViewController.swift */; };
+		497FED5728FC591500AA0FE9 /* Hooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C02E5A288F211900059530 /* Hooks.swift */; };
+		497FED5828FC591500AA0FE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D0AEBB2834D73400DDF450 /* AppDelegate.swift */; };
+		497FED5928FC591500AA0FE9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D306028378C6100E701C5 /* InfoViewController.swift */; };
+		497FED5A28FC591500AA0FE9 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CAB8728903C0A0097CB29 /* PostTableViewCell.swift */; };
+		497FED5D28FC591500AA0FE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49D0AEC62834D73700DDF450 /* LaunchScreen.storyboard */; };
+		497FED5E28FC591500AA0FE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49D0AEC42834D73700DDF450 /* Assets.xcassets */; };
 		49C02E5B288F211900059530 /* Hooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C02E5A288F211900059530 /* Hooks.swift */; };
 		49D0AEBC2834D73400DDF450 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D0AEBB2834D73400DDF450 /* AppDelegate.swift */; };
 		49D0AEC52834D73700DDF450 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49D0AEC42834D73700DDF450 /* Assets.xcassets */; };
@@ -24,8 +35,10 @@
 		4901E80B288EAAC0005539E9 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		493D306028378C6100E701C5 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		497CAB8728903C0A0097CB29 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		497FED4F28FC57B000AA0FE9 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		497FED6228FC591500AA0FE9 /* Navigation copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Navigation copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		497FED6328FC591500AA0FE9 /* Navigation copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Navigation copy2-Info.plist"; path = "/Users/cresh/Desktop/ios/ios-homeworks/Navigation copy2-Info.plist"; sourceTree = "<absolute>"; };
 		49C02E5A288F211900059530 /* Hooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hooks.swift; sourceTree = "<group>"; };
-		49D0AEB82834D73400DDF450 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49D0AEBB2834D73400DDF450 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49D0AEC42834D73700DDF450 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49D0AEC72834D73700DDF450 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -37,6 +50,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		497FED5B28FC591500AA0FE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49D0AEB52834D73400DDF450 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -67,16 +87,10 @@
 			isa = PBXGroup;
 			children = (
 				49C02E5C288FDC0200059530 /* Navigation */,
-				49D0AEB92834D73400DDF450 /* Products */,
+				497FED4F28FC57B000AA0FE9 /* Navigation.app */,
+				497FED6228FC591500AA0FE9 /* Navigation copy.app */,
+				497FED6328FC591500AA0FE9 /* Navigation copy2-Info.plist */,
 			);
-			sourceTree = "<group>";
-		};
-		49D0AEB92834D73400DDF450 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				49D0AEB82834D73400DDF450 /* Navigation.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		49FC9D42287C5B5F00A4FCEB /* Profile */ = {
@@ -93,6 +107,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		497FED5028FC591500AA0FE9 /* Navigation copy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 497FED5F28FC591500AA0FE9 /* Build configuration list for PBXNativeTarget "Navigation copy" */;
+			buildPhases = (
+				497FED5128FC591500AA0FE9 /* Sources */,
+				497FED5B28FC591500AA0FE9 /* Frameworks */,
+				497FED5C28FC591500AA0FE9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Navigation copy";
+			productName = Navigation;
+			productReference = 497FED6228FC591500AA0FE9 /* Navigation copy.app */;
+			productType = "com.apple.product-type.application";
+		};
 		49D0AEB72834D73400DDF450 /* Navigation */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49D0AECC2834D73700DDF450 /* Build configuration list for PBXNativeTarget "Navigation" */;
@@ -107,7 +138,7 @@
 			);
 			name = Navigation;
 			productName = Navigation;
-			productReference = 49D0AEB82834D73400DDF450 /* Navigation.app */;
+			productReference = 497FED4F28FC57B000AA0FE9 /* Navigation.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -117,7 +148,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1300;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					49D0AEB72834D73400DDF450 = {
@@ -134,16 +165,26 @@
 				Base,
 			);
 			mainGroup = 49D0AEAF2834D73400DDF450;
-			productRefGroup = 49D0AEB92834D73400DDF450 /* Products */;
+			productRefGroup = 49D0AEAF2834D73400DDF450;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				49D0AEB72834D73400DDF450 /* Navigation */,
+				497FED5028FC591500AA0FE9 /* Navigation copy */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		497FED5C28FC591500AA0FE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				497FED5D28FC591500AA0FE9 /* LaunchScreen.storyboard in Resources */,
+				497FED5E28FC591500AA0FE9 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49D0AEB62834D73400DDF450 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -156,6 +197,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		497FED5128FC591500AA0FE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				497FED5228FC591500AA0FE9 /* PostViewController.swift in Sources */,
+				497FED5328FC591500AA0FE9 /* ProfileHeaderView.swift in Sources */,
+				497FED5428FC591500AA0FE9 /* ProfileViewController.swift in Sources */,
+				497FED5528FC591500AA0FE9 /* LogInViewController.swift in Sources */,
+				497FED5628FC591500AA0FE9 /* FeedViewController.swift in Sources */,
+				497FED5728FC591500AA0FE9 /* Hooks.swift in Sources */,
+				497FED5828FC591500AA0FE9 /* AppDelegate.swift in Sources */,
+				497FED5928FC591500AA0FE9 /* InfoViewController.swift in Sources */,
+				497FED5A28FC591500AA0FE9 /* PostTableViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49D0AEB42834D73400DDF450 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -186,6 +243,60 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		497FED6028FC591500AA0FE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RDTF3XS674;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Navigation copy2-Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = no.Navigation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		497FED6128FC591500AA0FE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RDTF3XS674;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Navigation copy2-Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = no.Navigation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		49D0AECA2834D73700DDF450 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -237,7 +348,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -292,9 +403,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -309,6 +421,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RDTF3XS674;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -320,7 +433,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Navigation;
+				PRODUCT_BUNDLE_IDENTIFIER = no.Navigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -335,6 +448,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RDTF3XS674;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -346,7 +460,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Navigation;
+				PRODUCT_BUNDLE_IDENTIFIER = no.Navigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -357,6 +471,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		497FED5F28FC591500AA0FE9 /* Build configuration list for PBXNativeTarget "Navigation copy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				497FED6028FC591500AA0FE9 /* Debug */,
+				497FED6128FC591500AA0FE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		49D0AEB32834D73400DDF450 /* Build configuration list for PBXProject "Navigation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
