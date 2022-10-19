@@ -1,10 +1,3 @@
-//
-//  StorageService.h
-//  StorageService
-//
-//  Created by cresh on 18/10/2022.
-//
-
 #import <Foundation/Foundation.h>
 
 //! Project version number for StorageService.
