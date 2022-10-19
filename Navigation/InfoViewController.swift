@@ -1,7 +1,8 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-    // MARK: - Private Properties
+    
+    //MARK: Set UI elements
     private lazy var button: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(rgb: 0xEE6B4D)
@@ -23,7 +24,14 @@ class InfoViewController: UIViewController {
         self.button.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
-    // MARK: - Methods
+    //MARK: Load view
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setButton()
+        view.backgroundColor = UIColor.init(rgb: 0x96C1D8)
+    }
+    
+    // MARK: - Functions
     @objc func showAlert() {
         let alertMessage = UIAlertController(title: "Удаление", message: "Вы точно хотите удалить пост?", preferredStyle: .alert)
         
@@ -37,15 +45,7 @@ class InfoViewController: UIViewController {
         
         alertMessage.addAction(ok)
         alertMessage.addAction(cancel)
-        
         self.present(alertMessage, animated: true, completion: nil)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setButton()
-        view.backgroundColor = UIColor.init(rgb: 0x96C1D8)
-    }
-
 }
-

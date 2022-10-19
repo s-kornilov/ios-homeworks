@@ -2,7 +2,7 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    //MARK: - Public Properties
+    //MARK: Set UI elements
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isScrollEnabled = true
@@ -16,7 +16,6 @@ class LogInViewController: UIViewController {
         return contentView
     }()
     
-    //MARK: - Private Properties
     private lazy var logoVK: UIImageView = {
         let logoVK = UIImageView(image: UIImage(named: "logo"))
         logoVK.toAutoLayout()
@@ -34,7 +33,6 @@ class LogInViewController: UIViewController {
         logInField.autocapitalizationType = .none
         logInField.placeholder = "Email or phone"
         logInField.keyboardType = .default
-        
         logInField.makeSpace(inField: logInField)
         return logInField
     }()
@@ -50,7 +48,6 @@ class LogInViewController: UIViewController {
         passwordField.textColor = .black
         passwordField.placeholder = "password"
         passwordField.isSecureTextEntry = true
-        
         passwordField.keyboardType = .default
         passwordField.autocapitalizationType = .none
         passwordField.makeSpace(inField: passwordField)
@@ -63,11 +60,9 @@ class LogInViewController: UIViewController {
         stackView.layer.borderColor = UIColor.lightGray.cgColor
         stackView.layer.borderWidth = 0.5
         stackView.layer.cornerRadius = 10
-        
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.clipsToBounds = true
-        
         return stackView
     }()
     
@@ -90,7 +85,7 @@ class LogInViewController: UIViewController {
         return logInButton
     }()
     
-    //MARK: Init
+    //MARK: Load view
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -106,7 +101,7 @@ class LogInViewController: UIViewController {
         stackView.addArrangedSubview(logInField)
         stackView.addArrangedSubview(passwordField)
         
-        setupConstrainsts()
+        useConstrainsts()
         
         //Keyboard close in tap view
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
@@ -123,7 +118,7 @@ class LogInViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    //MARK: Actions
+    //MARK: Functions
     func registerKeyboardNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow(notification:)),
@@ -144,44 +139,47 @@ class LogInViewController: UIViewController {
         scrollView.contentInset.bottom = 0.0
     }
     
-    //MARK: Methods
-    private func setupConstrainsts() {
-        let safeAreaGuide = view.safeAreaLayoutGuide
-        
-        NSLayoutConstraint.activate([scrollView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
-                                     scrollView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor),
-                                     scrollView.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor),
-                                     scrollView.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor),
-                                     
-                                     contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-                                     contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-                                     contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-                                     contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-                                     contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-                                     contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
-                                     
-                                     logoVK.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
-                                     logoVK.widthAnchor.constraint(equalToConstant: 100),
-                                     logoVK.heightAnchor.constraint(equalTo: logoVK.widthAnchor),
-                                     logoVK.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-                                     
-                                     stackView.topAnchor.constraint(equalTo: logoVK.bottomAnchor, constant: 120),
-                                     stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-                                     stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-                                     stackView.heightAnchor.constraint(equalToConstant: 100),
-                                     
-                                     logInButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
-                                     logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-                                     logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-                                     logInButton.heightAnchor.constraint(equalToConstant: 50),
-                                    ])
-    }
-    
-    
     @objc private  func logInAction(){
         let profileViewController = ProfileViewController()
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
+    
+    //MARK: Set constrainsts
+    private func useConstrainsts() {
+        let safeAreaGuide = view.safeAreaLayoutGuide
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+            
+            logoVK.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
+            logoVK.widthAnchor.constraint(equalToConstant: 100),
+            logoVK.heightAnchor.constraint(equalTo: logoVK.widthAnchor),
+            logoVK.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            
+            stackView.topAnchor.constraint(equalTo: logoVK.bottomAnchor, constant: 120),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            stackView.heightAnchor.constraint(equalToConstant: 100),
+            
+            logInButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+            logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            logInButton.heightAnchor.constraint(equalToConstant: 50),
+        ])
+    }
+    
+    
+    
     
 }
 

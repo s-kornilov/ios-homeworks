@@ -1,8 +1,9 @@
 import UIKit
+import StorageService
 
 class PostTableViewCell: UITableViewCell {
     
-    //MARK: - Private Properties
+    //MARK: Set UI elements
     private lazy var postImage: UIImageView = {
         let postImage = UIImageView()
         postImage.toAutoLayout()
@@ -15,18 +16,15 @@ class PostTableViewCell: UITableViewCell {
     private lazy var postTitle: UILabel = {
         let postTitle = UILabel()
         postTitle.toAutoLayout()
-        //postTitle.backgroundColor = .yellow
         postTitle.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         postTitle.textColor = .black
         postTitle.numberOfLines = 2
         return postTitle
     }()
     
-    
     private lazy var postDescription: UILabel = {
         let postDescription = UILabel()
         postDescription.toAutoLayout()
-        //postDescription.backgroundColor = .yellow
         postDescription.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         postDescription.textColor = .systemGray
         postDescription.numberOfLines = 10
@@ -36,7 +34,6 @@ class PostTableViewCell: UITableViewCell {
     private lazy var postLikes: UILabel = {
         let postLikes = UILabel()
         postLikes.toAutoLayout()
-        //postLikes.backgroundColor = .red
         postLikes.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         postLikes.textColor = .black
         return postLikes
@@ -45,24 +42,23 @@ class PostTableViewCell: UITableViewCell {
     private lazy var postViews: UILabel = {
         let postViews = UILabel()
         postViews.toAutoLayout()
-        //postViews.backgroundColor = .red
         postViews.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         postViews.textColor = .black
         return postViews
     }()
     
-    // MARK: - Init
+    //MARK: Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubviews(postTitle, postImage, postDescription, postLikes, postViews)
-        setupConstraints()
+        useConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Methods
+    //MARK: Functions
     func setCell(post: Post) {
         self.postTitle.text = post.title
         self.postImage.image = UIImage(named: post.image)
@@ -71,9 +67,8 @@ class PostTableViewCell: UITableViewCell {
         self.postViews.text = "Views: \(post.views)"
     }
     
-    // MARK: Setup constraints
-    private func setupConstraints(){
-        toAutoLayout()
+    // MARK: Set constraints
+    private func useConstraints(){
         NSLayoutConstraint.activate([
             postTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             postTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -100,5 +95,4 @@ class PostTableViewCell: UITableViewCell {
             postViews.heightAnchor.constraint(equalToConstant: 20),
         ])
     }
-    
 }

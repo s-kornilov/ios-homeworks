@@ -2,7 +2,7 @@ import UIKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
-    // MARK: - Private Properties
+    //MARK: Set UI elements
     private lazy var profilePhoto: UIImageView = {
         let profilePhoto = UIImageView(image: UIImage(named: "profilePhoto"))
         profilePhoto.toAutoLayout()
@@ -63,11 +63,11 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return statusChangeField
     }()
     
-    // MARK: - Init
+    // MARK: Load view
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         self.addSubviews(profilePhoto, profileName, statusChangeField, profileStatus,profileStatusButton)
-        setupConstraints()
+        useConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -88,9 +88,9 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         print(statusText)
     }
     
-    // MARK: Setup constraints
-    private func setupConstraints() {
-        [
+    // MARK: Set constraints
+    private func useConstraints() {
+        NSLayoutConstraint.activate([
             profilePhoto.widthAnchor.constraint(equalToConstant: 100),
             profilePhoto.heightAnchor.constraint(equalToConstant: 100),
             profilePhoto.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
@@ -113,7 +113,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             statusChangeField.bottomAnchor.constraint(equalTo: profileStatusButton.topAnchor, constant: -10),
             statusChangeField.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
             statusChangeField.heightAnchor.constraint(equalToConstant: 40),
-        ].forEach({$0.isActive = true})
+        ])
     }
     
 }

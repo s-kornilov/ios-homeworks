@@ -2,7 +2,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    //MARK: Make buttons
+    //MARK: Set UI elements
     private lazy var firstButton: UIButton = {
         let firstButton = UIButton()
         firstButton.toAutoLayout()
@@ -27,7 +27,6 @@ class FeedViewController: UIViewController {
         return secondButton
     }()
     
-    //MARK: Make group of buttons
     private var stackView: UIStackView {
         let stackView = UIStackView()
         stackView.toAutoLayout()
@@ -51,27 +50,26 @@ class FeedViewController: UIViewController {
         //postViewController.titlePost = post.title
     }
     
-
-    
-    //MARK: viewDidLoad
+    //MARK: Load view
     override func viewDidLoad() {
         super.viewDidLoad()
-        #if DEBUG
+        
+    #if DEBUG
         view.backgroundColor = UIColor.init(rgb: 0x96C1D8)
-        #else
+    #else
         view.backgroundColor = UIColor.init(rgb: 0xf9e1cb)
-        #endif
+    #endif
+        
         self.title = "Feed"
         view.addSubview(stackView)
-        setupConstraints()
+        useConstraints()
     }
     
-    //MARK: Setup constaints
-    private func setupConstraints() {
-        let safeAreaGuide = view.safeAreaLayoutGuide
+    // MARK: Set constraints
+    private func useConstraints() {
         NSLayoutConstraint.activate([
-            firstButton.centerXAnchor.constraint(equalTo: safeAreaGuide.centerXAnchor),
-            firstButton.centerYAnchor.constraint(equalTo: safeAreaGuide.centerYAnchor),
+            firstButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            firstButton.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             
             firstButton.widthAnchor.constraint(equalToConstant: 150),
             firstButton.heightAnchor.constraint(equalToConstant: 50),
@@ -80,5 +78,3 @@ class FeedViewController: UIViewController {
         ])
     }
 }
-
-
