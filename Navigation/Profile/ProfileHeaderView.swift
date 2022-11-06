@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
@@ -90,30 +91,35 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     // MARK: Set constraints
     private func useConstraints() {
-        NSLayoutConstraint.activate([
-            profilePhoto.widthAnchor.constraint(equalToConstant: 100),
-            profilePhoto.heightAnchor.constraint(equalToConstant: 100),
-            profilePhoto.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-            profilePhoto.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            
-            profileName.leftAnchor.constraint(equalTo: profilePhoto.rightAnchor, constant: 20),
-            profileName.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-            
-            profileStatusButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-            profileStatusButton.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
-            profileStatusButton.topAnchor.constraint(equalTo: profilePhoto.bottomAnchor, constant: 42),
-            profileStatusButton.heightAnchor.constraint(equalToConstant: 50),
-            profileStatusButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
-            
-            profileStatus.leftAnchor.constraint(equalTo: profilePhoto.rightAnchor, constant: 20),
-            profileStatus.bottomAnchor.constraint(equalTo: statusChangeField.topAnchor, constant: -6),
-            profileStatus.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
-            
-            statusChangeField.leftAnchor.constraint(equalTo: profilePhoto.rightAnchor, constant: 20),
-            statusChangeField.bottomAnchor.constraint(equalTo: profileStatusButton.topAnchor, constant: -10),
-            statusChangeField.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
-            statusChangeField.heightAnchor.constraint(equalToConstant: 40),
-        ])
+        profilePhoto.snp.makeConstraints { make in
+            make.width.height.equalTo(100)
+            make.leading.equalToSuperview().offset(16)
+            make.top.equalToSuperview().offset(16)
+        }
+        profileName.snp.makeConstraints { make in
+            make.leading.equalTo(profilePhoto.snp.trailing).offset(20)
+            make.top.equalToSuperview().offset(27)
+        }
+        
+        profileStatus.snp.makeConstraints { make in
+            make.leading.equalTo(profilePhoto.snp.trailing).offset(20)
+            make.bottom.equalTo(statusChangeField.snp.top).offset(-6)
+            make.trailing.greaterThanOrEqualToSuperview().offset(-16)
+        }
+        
+        statusChangeField.snp.makeConstraints { make in
+            make.leading.equalTo(profilePhoto.snp.trailing).offset(20)
+            make.bottom.equalTo(profileStatusButton.snp.top).offset(-10)
+            make.trailing.greaterThanOrEqualToSuperview().offset(-16)
+            make.height.equalTo(40)
+        }
+        
+        profileStatusButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.top.equalTo(profilePhoto.snp.bottom).offset(42)
+            make.bottom.equalToSuperview().offset(-10)
+        }
     }
-    
 }

@@ -1,5 +1,6 @@
 import UIKit
 import StorageService
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     
@@ -61,7 +62,12 @@ class PostTableViewCell: UITableViewCell {
     //MARK: Functions
     func setCell(post: Post) {
         self.postTitle.text = post.title
-        self.postImage.image = UIImage(named: post.image)
+        
+        if let filterImage = UIImage(named: post.image) {
+            ImageProcessor().processImage(sourceImage: filterImage, filter: .tonal) {
+                self.postImage.image = $0
+            }
+        }
         self.postDescription.text = post.description
         self.postLikes.text = "Likes: \(post.likes)"
         self.postViews.text = "Views: \(post.views)"
