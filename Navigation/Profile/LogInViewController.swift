@@ -140,8 +140,49 @@ class LogInViewController: UIViewController {
     }
     
     @objc private  func logInAction(){
-        let profileViewController = ProfileViewController()
-        self.navigationController?.pushViewController(profileViewController, animated: true)
+        var userData: UserService
+        
+#if DEBUG
+        userData = TestUserService()
+        let checkAuth = true
+#else
+        userData = CurrentUserService()
+        let checkAuth = Auth(login: logInField.text!, password: passwordField.text!)
+#endif
+        
+        let profileViewController = ProfileViewController(userData: userData, userLogin: logInField.text!)
+        
+        if checkAuth == true {
+            self.navigationController?.pushViewController(profileViewController, animated: true)
+        }
+        else {
+            var cause = ""
+            if logInField.text != "" && passwordField.text != "" && checkAuth == false {
+                cause = "Логин и пароль не верны"
+            }
+            else if logInField.text == "" && passwordField.text == "" {
+                cause = "Логин и пароль не введены"
+            }
+            else if passwordField.text == "" {
+                cause = "Не введен пароль"
+            }
+            else if logInField.text == "" {
+                cause = "Не введен логин"
+            }
+            else {
+                cause = "Что-то сломалось"
+            }
+            showAlert(cause: cause)
+        }
+    }
+    
+    @objc private func showAlert(cause: String) {
+        
+        let alertMessage = UIAlertController(title: "Ошибка!", message: cause, preferredStyle: .alert)
+        
+        let close = UIAlertAction(title: "Закрыть", style: UIAlertAction.Style.default)
+        alertMessage.addAction(close)
+        self.present(alertMessage, animated: true, completion: nil)
     }
     
     //MARK: Set constrainsts

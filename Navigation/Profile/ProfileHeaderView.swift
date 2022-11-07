@@ -2,6 +2,7 @@ import UIKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
+    
     //MARK: Set UI elements
     private lazy var profilePhoto: UIImageView = {
         let profilePhoto = UIImageView(image: UIImage(named: "profilePhoto"))
@@ -19,7 +20,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         //profileName.backgroundColor = .yellow
         profileName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         profileName.textColor = .black
-        profileName.text = "Rocky Balboa"
+        profileName.text = ""
         return profileName
     }()
     
@@ -30,7 +31,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         profileStatus.toAutoLayout()
         //profileStatus.backgroundColor = .yellow
         profileStatus.textColor = .gray
-        profileStatus.text = "waiting for something..."
+        profileStatus.text = ""
         return profileStatus
     }()
     
@@ -68,6 +69,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         super.init(reuseIdentifier: reuseIdentifier)
         self.addSubviews(profilePhoto, profileName, statusChangeField, profileStatus,profileStatusButton)
         useConstraints()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -86,6 +88,12 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         statusText = statusChangeField.text!
         profileStatus.text = statusText
         print(statusText)
+    }
+    
+    public func setUserData(user: User) {
+        profileName.text = user.fullName
+        profilePhoto.image = user.avatar
+        profileStatus.text = user.status
     }
     
     // MARK: Set constraints

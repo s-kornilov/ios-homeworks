@@ -5,6 +5,22 @@ class ProfileViewController: UIViewController {
         
     fileprivate var posts = postFeed
     
+    private let userData: UserService
+    private let userLogin: String
+    
+    init(userData: UserService, userLogin: String) {
+        self.userData = userData
+        self.userLogin = userLogin
+        super.init(nibName: nil, bundle: nil)
+        
+        print("login: \(self.userLogin)")
+        print("data: \(self.userData)")
+    }
+        
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: Set UI elements
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -91,6 +107,10 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as! ProfileHeaderView
+            if let userData = userData.userSetup(userLogin) {
+                view.setUserData(user: userData)
+                print(userData)
+            }
             return view
         } else {
             return nil
