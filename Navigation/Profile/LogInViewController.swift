@@ -140,24 +140,19 @@ class LogInViewController: UIViewController {
     }
     
     @objc private  func logInAction(){
-        var userData: UserService
         
 #if DEBUG
-        userData = TestUserService()
-        let checkAuth = true
+        let userData = TestUserService()
 #else
-        userData = CurrentUserService()
-        let checkAuth = Auth(login: logInField.text!, password: passwordField.text!)
+        let userData = CurrentUserService()
 #endif
-        
-        let profileViewController = ProfileViewController(userData: userData, userLogin: logInField.text!)
-        
-        if checkAuth == true {
+        if Auth(login: logInField.text!, password: passwordField.text!) {
+            let profileViewController = ProfileViewController(userData: userData, userLogin: logInField.text!)
             self.navigationController?.pushViewController(profileViewController, animated: true)
         }
         else {
             var cause = ""
-            if logInField.text != "" && passwordField.text != "" && checkAuth == false {
+            if logInField.text != "" && passwordField.text != "" {
                 cause = "Логин и пароль не верны"
             }
             else if logInField.text == "" && passwordField.text == "" {
@@ -218,10 +213,7 @@ class LogInViewController: UIViewController {
             logInButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
-    
-    
-    
-    
+
 }
 
 
