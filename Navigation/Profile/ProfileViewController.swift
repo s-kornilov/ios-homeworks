@@ -109,7 +109,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as! ProfileHeaderView
             if let userData = userData.userSetup(userLogin) {
                 view.setUserData(user: userData)
-                print(userData)
+                print("ProfileVC.\(userData)")
             }
             return view
         } else {

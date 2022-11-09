@@ -39,15 +39,6 @@ class TestUserService: UserService {
     }
 }
 
-func Auth(login: String, password: String) -> Bool {
-    if (userData.first(where: { $0.login == login && $0.password == password }) != nil)  {
-        return true
-    }
-    else {
-        return false
-    }
-}
-
 let userData = [
     User(login: "rocky", password: "pass", fullName: "Rocky Balboa", avatar: UIImage(named: "rocky"), status: "waiting for something"),
     User(login: "shrek", password: "pass", fullName: "Shrek", avatar: UIImage(named: "shrek"), status: "woohaa-a-a-a")]

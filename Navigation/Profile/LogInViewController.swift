@@ -1,6 +1,11 @@
 import UIKit
 
-class LogInViewController: UIViewController {
+protocol LoginViewControllerDelegate {
+    func check(inputLogin: String, inputPassword: String) -> Bool
+}
+
+class LogInViewController: UIViewController, UITextFieldDelegate {
+    var delegate: LoginViewControllerDelegate?
     
     //MARK: Set UI elements
     let scrollView: UIScrollView = {
@@ -22,19 +27,19 @@ class LogInViewController: UIViewController {
         return logoVK
     }()
     
-    private lazy var logInField: UITextField = {
-        let logInField = UITextField()
-        logInField.toAutoLayout()
-        logInField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        logInField.tintColor = UIColor(named: "AccentColor")
-        logInField.layer.borderColor = UIColor.lightGray.cgColor
-        logInField.layer.borderWidth = 0.25
-        logInField.textColor = .black
-        logInField.autocapitalizationType = .none
-        logInField.placeholder = "Email or phone"
-        logInField.keyboardType = .default
-        logInField.makeSpace(inField: logInField)
-        return logInField
+    private lazy var loginField: UITextField = {
+        let loginField = UITextField()
+        loginField.toAutoLayout()
+        loginField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        loginField.tintColor = UIColor(named: "AccentColor")
+        loginField.layer.borderColor = UIColor.lightGray.cgColor
+        loginField.layer.borderWidth = 0.25
+        loginField.textColor = .black
+        loginField.autocapitalizationType = .none
+        loginField.placeholder = "Email or phone"
+        loginField.keyboardType = .default
+        loginField.makeSpace(inField: loginField)
+        return loginField
     }()
     
     private lazy var passwordField: UITextField = {
@@ -98,14 +103,18 @@ class LogInViewController: UIViewController {
         contentView.addSubview(stackView)
         contentView.addSubview(logInButton)
         
-        stackView.addArrangedSubview(logInField)
+        stackView.addArrangedSubview(loginField)
         stackView.addArrangedSubview(passwordField)
+        
+        loginField.delegate = self
+        passwordField.delegate = self
         
         useConstrainsts()
         
         //Keyboard close in tap view
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tapGesture)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,35 +148,19 @@ class LogInViewController: UIViewController {
         scrollView.contentInset.bottom = 0.0
     }
     
-    @objc private  func logInAction(){
-        
-#if DEBUG
-        let userData = TestUserService()
-#else
-        let userData = CurrentUserService()
-#endif
-        if Auth(login: logInField.text!, password: passwordField.text!) {
-            let profileViewController = ProfileViewController(userData: userData, userLogin: logInField.text!)
-            self.navigationController?.pushViewController(profileViewController, animated: true)
-        }
-        else {
-            var cause = ""
-            if logInField.text != "" && passwordField.text != "" {
-                cause = "Логин и пароль не верны"
-            }
-            else if logInField.text == "" && passwordField.text == "" {
-                cause = "Логин и пароль не введены"
-            }
-            else if passwordField.text == "" {
-                cause = "Не введен пароль"
-            }
-            else if logInField.text == "" {
-                cause = "Не введен логин"
-            }
-            else {
-                cause = "Что-то сломалось"
-            }
-            showAlert(cause: cause)
+    @objc func logInAction(){
+//#if DEBUG
+//            let userData = TestUserService()
+//#else
+//            let userData = CurrentUserService()
+//#endif
+        // if Checker.shared.check(inputLogin: "123", inputPassword: "123") == true { - напрямую работает, через делегат нет,
+       if delegate?.check(inputLogin: "123", inputPassword: "123") == true {
+            print("\n$$ true\n")
+            //let profileViewController = ProfileViewController(userData: userData, userLogin: loginField.text!)
+            //self.navigationController?.pushViewController(profileViewController, animated: true)
+        } else {
+            print("\n$$ false at loginVC\n")
         }
     }
     
@@ -213,8 +206,4 @@ class LogInViewController: UIViewController {
             logInButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
-
 }
-
-
-

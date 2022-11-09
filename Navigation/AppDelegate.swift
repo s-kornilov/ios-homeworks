@@ -7,6 +7,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        //MARK: - homework 4
+        let inspector = MyLoginFactory.shared.returnLoginInspector()
         let tabBarController = UITabBarController()
         
         func createFeedViewController() -> UINavigationController {
@@ -38,6 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarController.viewControllers = [createFeedViewController(), createProfileViewController()]
             return tabBarController
         }
+        
+        //MARK: - homework 4
+        let loginVC = LogInViewController()
+        loginVC.delegate = inspector
         
         window = UIWindow(frame: UIScreen.main.bounds)
         // window?.backgroundColor = .orange
