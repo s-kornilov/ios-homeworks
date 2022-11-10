@@ -22,8 +22,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: Functions
-    public func setImage(_ name: String) {
-        galleryItem.image = UIImage(named: name)
+    public func setImage(_ name: UIImage) {
+        galleryItem.image = name
     }
     
     // MARK: Set constraints

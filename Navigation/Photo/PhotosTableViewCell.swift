@@ -1,5 +1,6 @@
 import UIKit
 import StorageService
+import iOSIntPackage
 
 class PhotosTableViewCell: UITableViewCell {
     
@@ -45,6 +46,7 @@ class PhotosTableViewCell: UITableViewCell {
         contentView.addSubviews(title, rightArrow, stackView)
         attachPhoto()
         useConstraints()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -54,13 +56,14 @@ class PhotosTableViewCell: UITableViewCell {
     //MARK: Functions
     func attachPhoto() {
         for i in 0...3 {
-            let gelleryPreview = UIImageView(image: UIImage(named: galleryList[i]))
+            let gelleryPreview = UIImageView(image: galleryList[i])
             gelleryPreview.toAutoLayout()
             gelleryPreview.layer.cornerRadius = 6
             gelleryPreview.clipsToBounds = true
             stackView.addArrangedSubview(gelleryPreview)
         }
     }
+    
     
     // MARK: Set constraints
     private func useConstraints(){
@@ -81,7 +84,7 @@ class PhotosTableViewCell: UITableViewCell {
         
         stackView.arrangedSubviews.forEach({
             [$0.widthAnchor.constraint(greaterThanOrEqualToConstant: (stackView.frame.width - 16) / 4),
-            $0.heightAnchor.constraint(equalTo: $0.widthAnchor)].forEach({$0.isActive = true})
-            })
+             $0.heightAnchor.constraint(equalTo: $0.widthAnchor)].forEach({$0.isActive = true})
+        })
     }
 }

@@ -155,9 +155,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 #else
         let userData = CurrentUserService()
 #endif
-        
-        if delegate?.check(inputLogin: loginField.text!, inputPassword: passwordField.text!) == true {
-            let profileViewController = ProfileViewController(userData: userData, userLogin: loginField.text!)
+        if delegate?.check(inputLogin: "rocky", inputPassword: "pass") == true {
+        //на время отключили проверку логин/пароль
+        //if delegate?.check(inputLogin: loginField.text!, inputPassword: passwordField.text!) == true {
+            let profileViewController = ProfileViewController(userData: userData, userLogin: "rocky") // userLogin: loginField.text!
             self.navigationController?.pushViewController(profileViewController, animated: true)
         } else {
             showAlert(cause: "Неверные логин/пароль")

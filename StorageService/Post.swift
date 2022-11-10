@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 public struct Post {
     public var title: String
@@ -11,8 +11,13 @@ let dummy = "Offence are highly fortune remain begin horses situation celebrated
 
 let dummy2 = "Told itself remark age bore than sister mistress than who arise jointure. Invitation gate seen. Dwelling children conduct rank steepest were waited object. Offended village danger. Humanity worse first this nearer branched my sell total quit smallness exeter window view parish. "
 
-public let galleryList = ["1","2","3","4","5","6","7","8","9","10",
-                    "11","12","13","14","15","16","17","18","19","20"]
+public var galleryList: [UIImage] = [UIImage(named:"1")!, UIImage(named:"2")!, UIImage(named:"3")!, UIImage(named:"4")!,
+                          UIImage(named:"5")!, UIImage(named:"6")!, UIImage(named:"7")!, UIImage(named:"8")!,
+                          UIImage(named:"9")!, UIImage(named:"10")!, UIImage(named:"11")!, UIImage(named:"12")!,
+                          UIImage(named:"13")!, UIImage(named:"14")!, UIImage(named:"15")!, UIImage(named:"16")!,
+                          UIImage(named:"17")!, UIImage(named:"18")!, UIImage(named:"19")!, UIImage(named:"20")!]
+
+public var newGalleryList: [UIImage] = []
 
 public let postFeed = [Post(title: "I am the champion, I won everyone!", description: dummy, image: "win", likes: 3523, views: 5678),
                 Post(title: "Ready to win everyone!", description: dummy2, image: "fight", likes: 1267, views: 2386),
