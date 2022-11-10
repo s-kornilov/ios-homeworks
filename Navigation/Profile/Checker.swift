@@ -4,14 +4,11 @@ final class Checker {
     static let shared = Checker()
     private init() {}
     
-     let log = "123"
-     let pass = "123"
+    private let log = "rocky"
+    private let pass = "pass"
     
     func check(inputLogin: String, inputPassword: String) -> Bool {
-        let log = "123"
-        let pass = "123"
         guard inputLogin == log && inputPassword == pass else {
-            print("##false at checker")
             return false }
         return true
     }

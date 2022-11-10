@@ -149,18 +149,18 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func logInAction(){
-//#if DEBUG
-//            let userData = TestUserService()
-//#else
-//            let userData = CurrentUserService()
-//#endif
-        // if Checker.shared.check(inputLogin: "123", inputPassword: "123") == true { - напрямую работает, через делегат нет,
-       if delegate?.check(inputLogin: "123", inputPassword: "123") == true {
-            print("\n$$ true\n")
-            //let profileViewController = ProfileViewController(userData: userData, userLogin: loginField.text!)
-            //self.navigationController?.pushViewController(profileViewController, animated: true)
+        
+#if DEBUG
+        let userData = TestUserService()
+#else
+        let userData = CurrentUserService()
+#endif
+        
+        if delegate?.check(inputLogin: loginField.text!, inputPassword: passwordField.text!) == true {
+            let profileViewController = ProfileViewController(userData: userData, userLogin: loginField.text!)
+            self.navigationController?.pushViewController(profileViewController, animated: true)
         } else {
-            print("\n$$ false at loginVC\n")
+            showAlert(cause: "Неверные логин/пароль")
         }
     }
     

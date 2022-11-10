@@ -7,7 +7,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        //MARK: - homework 4
         let inspector = MyLoginFactory.shared.returnLoginInspector()
         let tabBarController = UITabBarController()
         
@@ -31,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 profileViewController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(named: "person.crop.square"), tag: 1)
             }
             //profileViewController.navigationBar.isHidden = true
+            profileViewController.delegate = inspector
             return UINavigationController(rootViewController: profileViewController)
             
         }
@@ -40,10 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarController.viewControllers = [createFeedViewController(), createProfileViewController()]
             return tabBarController
         }
-        
-        //MARK: - homework 4
-        let loginVC = LogInViewController()
-        loginVC.delegate = inspector
         
         window = UIWindow(frame: UIScreen.main.bounds)
         // window?.backgroundColor = .orange
@@ -65,10 +61,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Приложение было в фоне - \(delta) секунд")
     }
     
-    
 }
-
-
-
-
-
