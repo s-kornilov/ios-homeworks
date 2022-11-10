@@ -4,7 +4,7 @@ protocol LoginViewControllerDelegate {
     func check(inputLogin: String, inputPassword: String) -> Bool
 }
 
-class LogInViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     var delegate: LoginViewControllerDelegate?
     
     //MARK: Set UI elements

@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         func createProfileViewController() -> UINavigationController {
-            let profileViewController = LogInViewController()
+            let profileViewController = LoginViewController()
             profileViewController.title = "Профиль"
             if #available(iOS 13.0, *) {
                 profileViewController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.crop.square"), tag: 1)
