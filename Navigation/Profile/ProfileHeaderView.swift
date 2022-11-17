@@ -36,11 +36,10 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }()
     
     private lazy var profileStatusButton: UIButton = {
-        let profileStatusButton = UIButton()
-        profileStatusButton.toAutoLayout()
-        profileStatusButton.backgroundColor = UIColor(rgb: 0x0279FF)
-        profileStatusButton.layer.cornerRadius = 4
-        profileStatusButton.setTitle("Setup status", for: .normal)
+        let profileStatusButton = CustomButton(title: "Setup status",
+                                               titleColor: .white,
+                                               bgColor: UIColor(rgb: 0x0279FF),
+        cornerRadius: 4)
         profileStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         profileStatusButton.layer.shadowOffset.width = 4
         profileStatusButton.layer.shadowOffset.height = 4

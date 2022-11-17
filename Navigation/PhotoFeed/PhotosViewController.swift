@@ -36,6 +36,12 @@ class PhotosViewController: UIViewController {
         imagePublisherFacade.addImagesWithTimer(time: 0.6, repeat: 20, userImages: galleryList)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        imagePublisherFacade.removeSubscription(for: self)
+        imagePublisherFacade.rechargeImageLibrary()
+    }
+    
     // MARK: Set constraints
     private func useConstraints(){
         NSLayoutConstraint.activate([

@@ -72,8 +72,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }()
     
     private lazy var logInButton: UIButton = {
-        let logInButton = UIButton()
-        logInButton.toAutoLayout()
+        let logInButton = CustomButton(title: "Log In",
+                                       titleColor: .white,
+                                       bgColor: .blue,
+                                       cornerRadius: 10)
         
         if let pixelImage = UIImage(named: "blue_pixel") {
             logInButton.setBackgroundImage(pixelImage.imageWithAlpha(alpha: 1), for: .normal)
@@ -82,10 +84,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             logInButton.setBackgroundImage(pixelImage.imageWithAlpha(alpha: 0.8), for: .disabled)
         }
         
-        logInButton.layer.cornerRadius = 10
         logInButton.clipsToBounds = true
-        logInButton.setTitle("Log In", for: .normal)
-        logInButton.tintColor = .white
         logInButton.addTarget(self, action: #selector(logInAction), for: .touchUpInside)
         return logInButton
     }()
