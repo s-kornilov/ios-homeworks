@@ -1,27 +1,24 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    var model = FeedModel()
+    private var model = FeedModel()
     
     //MARK: Set UI elements
-    private lazy var firstButton: UIButton = {
+    private lazy var firstButton: CustomButton = {
         let firstButton = CustomButton(title: "Go to post 1",
                                        titleColor: UIColor(rgb: 0xFFFFFF),
                                        bgColor: UIColor(rgb: 0xEE6C4D),
                                        cornerRadius: 15)
         firstButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        firstButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        
         return firstButton
     }()
     
-    private lazy var secondButton: UIButton = {
+    private lazy var secondButton: CustomButton = {
         let secondButton = CustomButton(title: "Go to post 2",
                                         titleColor: UIColor(rgb: 0xFFFFFF),
                                         bgColor: UIColor(rgb: 0xEE6C4D),
                                         cornerRadius: 15)
         secondButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        secondButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         return secondButton
     }()
     
@@ -57,13 +54,12 @@ class FeedViewController: UIViewController {
         return someWordField
     }()
     
-    private lazy var checkGuessButton: UIButton = {
+    private lazy var checkGuessButton: CustomButton = {
         let checkGuessButton = CustomButton(title: "Check word",
                                             titleColor: UIColor(rgb: 0xFFFFFF),
                                             bgColor: UIColor(rgb: 0x7dba68),
                                             cornerRadius: 15)
         checkGuessButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        checkGuessButton.addTarget(self, action: #selector(checkWord), for: .touchUpInside)
         return checkGuessButton
     }()
     
@@ -89,9 +85,26 @@ class FeedViewController: UIViewController {
         self.title = "Feed"
         view.addSubviews(stackView, someWordField, checkGuessButton, checkWordLabel)
         useConstraints()
+        
+        checkGuessButton.tapAction = {  [weak self ] in
+            guard let self = self else { return }
+            self.buttonAction()
+        }
+        
+        firstButton.tapAction = {  [weak self ] in
+            guard let self = self else { return }
+            self.showPostVC()
+        }
+        secondButton.tapAction = {  [weak self ] in
+            guard let self = self else { return }
+            self.showPostVC()
+        }
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(markGreen), name: NSNotification.Name("markGreen"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(markRed), name: NSNotification.Name("markRed"), object: nil)
+        
     }
-    
-    
     
     // MARK: Set constraints
     private func useConstraints() {
@@ -124,20 +137,24 @@ class FeedViewController: UIViewController {
     }
     
     //MARK: Some actions
-    @objc func buttonAction() {
-        let postViewController = PostViewController()
-        navigationController?.pushViewController(postViewController, animated: true)
+    @objc func markGreen() {
+        checkWordLabel.text = "TRUE"
+        checkWordLabel.textColor = .green
     }
     
-    @objc func checkWord() {
-        if model.check(word: someWordField.text!) == true {
-            checkWordLabel.text = "TRUE"
-            checkWordLabel.textColor = .green
-        }
-        else {
-            checkWordLabel.text = "FALSE"
-            checkWordLabel.textColor = .red
-        }
+    @objc func markRed() {
+        checkWordLabel.text = "FALSE"
+        checkWordLabel.textColor = .red
+    }
+    
+    private func buttonAction() {
+        model.check(word: someWordField.text!)
+    }
+    
+    private func showPostVC() {
+        let postVC = PostViewController()
+        postVC.title = "Post"
+        self.navigationController?.pushViewController(postVC, animated: true)
     }
     
 }

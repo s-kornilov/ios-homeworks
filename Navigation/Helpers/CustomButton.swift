@@ -7,6 +7,8 @@ class CustomButton: UIButton {
     let bgColor: UIColor
     let cornerRadius: Int
     
+    var tapAction: (() -> Void)?
+    
     init(title: String, titleColor: UIColor, bgColor:UIColor, cornerRadius: Int) {
         self.title = title
         self.titleColor = titleColor
@@ -20,10 +22,16 @@ class CustomButton: UIButton {
         setTitleColor(titleColor, for: .normal)
         backgroundColor = bgColor
         layer.cornerRadius = CGFloat(cornerRadius)
+        addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+                
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc private func buttonTapped() {
+            tapAction?()
+        }
 }
