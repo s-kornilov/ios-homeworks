@@ -5,7 +5,19 @@ protocol LoginViewControllerDelegate {
 }
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
+    
     var delegate: LoginViewControllerDelegate?
+    var coordinator: LoginCoordinator?
+    
+    init(coordinator: LoginCoordinator) {
+        super.init(nibName: nil, bundle: nil)
+        self.coordinator = coordinator
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     //MARK: Set UI elements
     let scrollView: UIScrollView = {
@@ -155,12 +167,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let userData = CurrentUserService()
 #endif
         if delegate?.check(inputLogin: "rocky", inputPassword: "pass") == true {
+        
         //на время отключили проверку логин/пароль
         //if delegate?.check(inputLogin: loginField.text!, inputPassword: passwordField.text!) == true {
-            let profileViewController = ProfileViewController(userData: userData, userLogin: "rocky") // userLogin: loginField.text!
-            self.navigationController?.pushViewController(profileViewController, animated: true)
+            //let profileViewController = ProfileViewController(userData: userData, userLogin: "rocky") // userLogin: loginField.text!
+            //self.navigationController?.pushViewController(profileViewController, animated: true)
         } else {
-            showAlert(cause: "Неверные логин/пароль")
+            print("work")
+            let profileCoordinator: ProfileCoordinator = ProfileCoordinator(userData: userData, userLogin: "rocky")
+            profileCoordinator.start()
+            //showAlert(cause: "Неверные логин/пароль")
+        
         }
     }
     

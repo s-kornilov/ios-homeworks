@@ -7,10 +7,12 @@ class ProfileViewController: UIViewController {
     
     private let userData: UserService
     private let userLogin: String
+    var coordinator: ProfileCoordinator?
     
-    init(userData: UserService, userLogin: String) {
+    init(userData: UserService, userLogin: String, coordinator: ProfileCoordinator) {
         self.userData = userData
         self.userLogin = userLogin
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
         
         print("login: \(self.userLogin)")

@@ -1,5 +1,4 @@
 import UIKit
-import Foundation
 
 final class FeedModel {
     var secretWord: String = "pass"
@@ -13,4 +12,5 @@ final class FeedModel {
                 NotificationCenter.default.post(name: NSNotification.Name("markRed"), object: nil)
             }
         }
+    
 }
