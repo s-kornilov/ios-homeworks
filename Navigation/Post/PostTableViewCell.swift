@@ -59,7 +59,7 @@ class PostTableViewCell: UITableViewCell {
     }
     
     //MARK: Functions
-    func setCell(post: Post) {
+    func setCell(post: ProfilePostModel) {
         self.postTitle.text = post.title
         self.postImage.image = UIImage(named: post.image)
         self.postDescription.text = post.description

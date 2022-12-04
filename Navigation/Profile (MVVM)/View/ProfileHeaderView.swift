@@ -2,7 +2,6 @@ import UIKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
-    
     //MARK: Set UI elements
     private lazy var profilePhoto: UIImageView = {
         let profilePhoto = UIImageView(image: UIImage(named: "profilePhoto"))

@@ -18,7 +18,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     //MARK: Set UI elements
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -160,24 +159,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func logInAction(){
+        let inspector = MyLoginFactory.shared.returnLoginInspector()
+        self.delegate = inspector
         
 #if DEBUG
         let userData = TestUserService()
 #else
         let userData = CurrentUserService()
 #endif
-        if delegate?.check(inputLogin: "rocky", inputPassword: "pass") == true {
-        
-        //на время отключили проверку логин/пароль
-        //if delegate?.check(inputLogin: loginField.text!, inputPassword: passwordField.text!) == true {
-            //let profileViewController = ProfileViewController(userData: userData, userLogin: "rocky") // userLogin: loginField.text!
-            //self.navigationController?.pushViewController(profileViewController, animated: true)
+        if delegate?.check(inputLogin: "rocky", inputPassword: "pass") == true { //inputLogin: loginField.text!, inputPassword: passwordField.text!
+            let profileCoordinator: ProfileCoordinator = ProfileCoordinator(userData: userData, userLogin: "rocky") // userLogin: loginField.text!
+            let profileVC = profileCoordinator.start()
+            self.navigationController?.pushViewController(profileVC, animated: true)
         } else {
-            print("work")
-            let profileCoordinator: ProfileCoordinator = ProfileCoordinator(userData: userData, userLogin: "rocky")
-            profileCoordinator.start()
-            //showAlert(cause: "Неверные логин/пароль")
-        
+            showAlert(cause: "Неверные логин/пароль")
         }
     }
     

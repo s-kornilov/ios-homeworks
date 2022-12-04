@@ -3,20 +3,18 @@ import StorageService
 
 class ProfileViewController: UIViewController {
         
-    fileprivate var posts = postFeed
-    
     private let userData: UserService
     private let userLogin: String
+    
+    let profileViewModel: ProfileViewModel
     var coordinator: ProfileCoordinator?
     
-    init(userData: UserService, userLogin: String, coordinator: ProfileCoordinator) {
+    init(userData: UserService, userLogin: String, coordinator: ProfileCoordinator, profileViewModel: ProfileViewModel) {
         self.userData = userData
         self.userLogin = userLogin
         self.coordinator = coordinator
+        self.profileViewModel = profileViewModel
         super.init(nibName: nil, bundle: nil)
-        
-        print("login: \(self.userLogin)")
-        print("data: \(self.userData)")
     }
         
     required init?(coder: NSCoder) {
@@ -45,6 +43,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         title = "Профиль"
         view.backgroundColor = .white
+        profileViewModel.setPosts()
         view.addSubviews(tableView)
         configureTableView()
     }
@@ -87,7 +86,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 1 {
             let cell =  tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as! PostTableViewCell
-            cell.setCell(post: posts[indexPath.row])
+            cell.setCell(post: profileViewModel.postArray[indexPath.row])
             return cell
         }
         
@@ -103,7 +102,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return 1
         }
-        return postFeed.count
+        return profileViewModel.postArray.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

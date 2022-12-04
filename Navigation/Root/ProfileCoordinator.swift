@@ -3,7 +3,7 @@ import UIKit
 class ProfileCoordinator: Coordinator {
     var childs: [AppCoordinator] = []
     
-    var parentCoordinator: MainCoordinator?
+    var parentCoordinator: LoginCoordinator?
     
     lazy var rootViewController: UIViewController = UIViewController()
     let userData: UserService?
@@ -15,9 +15,8 @@ class ProfileCoordinator: Coordinator {
     }
     
     func start() -> UIViewController {
-        print("work at ProfileCoordinator")
-        rootViewController = UINavigationController(rootViewController: ProfileViewController(userData: userData!, userLogin: userLogin!, coordinator: self))
-        
+        let profileViewModel = ProfileViewModel(currentUser: userData!)
+        rootViewController = ProfileViewController(userData: userData!, userLogin: userLogin!, coordinator: self, profileViewModel: profileViewModel)
         return rootViewController
     }
     
