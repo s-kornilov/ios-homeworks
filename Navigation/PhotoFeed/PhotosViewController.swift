@@ -4,7 +4,8 @@ import iOSIntPackage
 
 class PhotosViewController: UIViewController {
     
-    let imagePublisherFacade = ImagePublisherFacade()
+    //let imagePublisherFacade = ImagePublisherFacade()
+    
     
     //MARK: Set UI elements
     private lazy var layout: UICollectionViewFlowLayout = {
@@ -25,6 +26,9 @@ class PhotosViewController: UIViewController {
         return collectionView
     }()
     
+    var timerCount = 0.0
+    var timer: Timer? = nil
+    
     //MARK: Load view
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +36,15 @@ class PhotosViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         view.addSubviews(self.collectionView)
         useConstraints()
-        imagePublisherFacade.subscribe(self)
-        imagePublisherFacade.addImagesWithTimer(time: 0.6, repeat: 20, userImages: galleryList)
+        
+        calculateTime {
+            otherThread()
+        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        imagePublisherFacade.removeSubscription(for: self)
-        imagePublisherFacade.rechargeImageLibrary()
     }
     
     // MARK: Set constraints
@@ -51,13 +56,43 @@ class PhotosViewController: UIViewController {
             self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
+    
+    private func otherThread() {
+        let imageProcessor = ImageProcessor()
+        imageProcessor.processImagesOnThread(sourceImages: galleryList, filter: .colorInvert, qos: .utility) { cgImages in
+            let images = cgImages.map({UIImage(cgImage: $0!)})
+            newGalleryList.removeAll()
+            images.forEach({newGalleryList.append($0)})
+            DispatchQueue.main.async{
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
+    func calculateTime(block : (() -> Void)) {
+        let start = DispatchTime.now()
+        block()
+        let end = DispatchTime.now()
+        let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
+        let timeInterval = Double(nanoTime) / 1_000_000
+        print("\nTimer: \(timeInterval) ms")
+    }
+    // filter = colorInvert
+    /*
+     .default = 0.042125 ms
+     .background = 0.024875 ms
+     .userInitiated = 0.057417 ms
+     .userInteractive =  0.03375 ms
+     .utility = 0.047542 ms
+     */
+    
 }
 
 //MARK: Extension VC
 extension UIViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return newGalleryList.count
+        newGalleryList.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -71,18 +106,5 @@ extension UIViewController: UICollectionViewDataSource, UICollectionViewDelegate
             width: (collectionView.frame.width - 40) / 3,
             height: (collectionView.frame.width - 40) / 3)
     }
-}
-
-extension PhotosViewController: ImageLibrarySubscriber {
-    func receive(images: [UIImage]) {
-        images.forEach { image in
-            if newGalleryList.contains(image) {
-                return
-            }
-            else {
-                newGalleryList.append(image)
-            }
-        }
-        collectionView.reloadData()
-    }
+    
 }
