@@ -26,8 +26,8 @@ class PhotosViewController: UIViewController {
         return collectionView
     }()
     
-    var timerCount = 0.0
-    var timer: Timer? = nil
+    var counter:Float = 0.00
+    var timer = Timer()
     
     //MARK: Load view
     override func viewDidLoad() {
@@ -35,12 +35,8 @@ class PhotosViewController: UIViewController {
         self.navigationItem.title = "Photo Gallery"
         navigationController?.navigationBar.isHidden = false
         view.addSubviews(self.collectionView)
+        otherThread()
         useConstraints()
-        
-        calculateTime {
-            otherThread()
-        }
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,32 +54,36 @@ class PhotosViewController: UIViewController {
     }
     
     private func otherThread() {
+        startTimer()
         let imageProcessor = ImageProcessor()
-        imageProcessor.processImagesOnThread(sourceImages: galleryList, filter: .colorInvert, qos: .utility) { cgImages in
+        imageProcessor.processImagesOnThread(sourceImages: galleryList, filter: .colorInvert, qos: .default) { cgImages in
             let images = cgImages.map({UIImage(cgImage: $0!)})
             newGalleryList.removeAll()
             images.forEach({newGalleryList.append($0)})
             DispatchQueue.main.async{
                 self.collectionView.reloadData()
+                self.timer.invalidate()
             }
+            
         }
     }
     
-    func calculateTime(block : (() -> Void)) {
-        let start = DispatchTime.now()
-        block()
-        let end = DispatchTime.now()
-        let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
-        let timeInterval = Double(nanoTime) / 1_000_000
-        print("\nTimer: \(timeInterval) ms")
+    private func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
+    
+    @objc func timerAction() {
+        counter += 0.01
+        print (counter)
+    }
+    
     // filter = colorInvert
     /*
-     .default = 0.042125 ms
-     .background = 0.024875 ms
-     .userInitiated = 0.057417 ms
-     .userInteractive =  0.03375 ms
-     .utility = 0.047542 ms
+     .default = 1.91 s
+     .background = 9.33 s
+     .userInitiated = 1.96 s
+     .userInteractive =  1.95 ms
+     .utility = 2.10 s
      */
     
 }
