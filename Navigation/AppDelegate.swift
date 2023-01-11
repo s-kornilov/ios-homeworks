@@ -43,8 +43,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         // window?.backgroundColor = .orange
+        
+        
+        let appConfiguration : NetworkManager.AppConfiguration = NetworkManager().urlArray.randomElement()!
+        NetworkManager.request(for: appConfiguration) { answerData, statusCode, errorText, allHeaderFields in
+            DispatchQueue.main.async {
+                if answerData != nil {
+                    print("\n\nName: \(String(describing: answerData))")
+                    print("allHeaderFields: \(String(describing: allHeaderFields))")
+                }
+                
+                if errorText != nil {
+                    print("Server error: \(String(describing: errorText))")
+                } else {
+                    print("Server responce: \(String(describing: statusCode))")
+                }
+            }
+        }
+        
         window?.rootViewController = createTabBarController()
         window?.makeKeyAndVisible()
+        
         return true
     }
     
