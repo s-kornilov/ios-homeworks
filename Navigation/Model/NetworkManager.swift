@@ -39,7 +39,7 @@ struct NetworkManager {
             let statusCode = (responce as? HTTPURLResponse)?.statusCode
             let statusResponce = String(describing: statusCode)
             
-            print("\n\nURL = \(url)")
+           // print("\n\nURL = \(url)")
             
             if error != nil {
                 completion?(nil, nil, error?.localizedDescription, nil)
